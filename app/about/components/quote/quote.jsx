@@ -36,7 +36,7 @@ export default function Quote() {
 	return (
 		<Wrapper>
 			<div ref={ref} className="text-center">
-				<h3 className="text-[2rem] mb-2 text-white">
+				<h3 className="text-[1.5rem] sm:text-[1.75rem] md:text-[2rem] mb-2 text-white font-[var(--font-playfair)]">
 					{text1.map((word, index) => (
 						<motion.span
 							key={index}
@@ -60,7 +60,7 @@ export default function Quote() {
 						</motion.span>
 					))}
 				</h3>
-				<h3 className="text-[2rem] mb-4 text-white">
+					<h3 className="text-[1.5rem] sm:text-[1.75rem] md:text-[2rem] mb-2 text-white font-[var(--font-playfair)]">
 					{text2.map((word, index) => (
 						<motion.span
 							key={index + text1.length}
@@ -86,7 +86,7 @@ export default function Quote() {
 						</motion.span>
 					))}
 				</h3>
-				<p className="text-lg text-gray-200 italic mt-6">
+					<p className="text-lg sm:text-xl text-gray-200 italic mt-6 font-[var(--font-playfair)]">
 					<motion.span
 						initial={{
 							opacity: 0,

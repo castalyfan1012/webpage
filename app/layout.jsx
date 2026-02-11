@@ -1,5 +1,13 @@
 import "./globals.css";
 import { Poppins, Jost } from "next/font/google";
+import { Playfair_Display } from "next/font/google";
+
+const playfair = Playfair_Display({
+    subsets: ["latin"],
+    weight: ["400", "500", "600", "700"],
+    variable: "--font-playfair",
+    display: "swap",
+});
 import Navbar from "@/components/Navbar";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
@@ -96,7 +104,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
 	return (
-		<html lang="en" className={`${poppins.variable} ${jost.variable}`}>
+		<html lang="en" className={`${poppins.variable} ${jost.variable} ${playfair.variable}`}>
 			<body>
 				<script
 					type="application/ld+json"
