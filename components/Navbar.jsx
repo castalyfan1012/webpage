@@ -146,7 +146,7 @@ const Navbar = () => {
 						className={`text-2xl ml-2 md:ml-0 transition-colors ease duration-500 ${
 							isNavOpen ? "text-white" : ""
 						}`}>
-						Castaly Fan
+						<Link href="/" className="hover:opacity-80 transition"> Castaly Fan </Link>
 					</h1>
 				</div>
 				<div className="flex flex-row items-center">
