@@ -117,7 +117,7 @@ const MyPage = () => {
 								delay: 0.4,
 								type: "spring",
 							}}>
-							Hi, welcome to Castaly's homepage. I am a Physics PhD candidate specializing in high-energy physics, with a current focus on experimental neutrino physics and searches for physics beyond the Standard Model (BSM). My research spans cosmology, astrophysics, and high-energy theoretical physics, bridging fundamental science with cutting-edge experimental techniques. Explore the pages below to learn more about my work and interests.
+							Hi, welcome to Castaly&apos;s homepage. I am a Physics PhD candidate specializing in high-energy physics, with a current focus on experimental neutrino physics and searches for physics beyond the Standard Model (BSM). My research spans cosmology, astrophysics, and high-energy theoretical physics, bridging fundamental science with cutting-edge experimental techniques. Explore the pages below to learn more about my work and interests.
 						</motion.p>
 						<motion.div
 							className="buttons flex flex-row justify-center items-center space-x-4 mt-10"
