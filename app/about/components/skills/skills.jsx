@@ -1,153 +1,112 @@
 "use client";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
-import { CodepenIcon, WebhookIcon, ActivityIcon, MobileIcon } from "./icons"
+
+// Replace these with better physics-oriented icons (lucide-react, heroicons, etc.)
+import { Atom, Microscope, Cpu } from "lucide-react"; // ← recommended replacements
 
 const skillCategories = {
-	web: {
-		title: "Web Development",
-		icon: CodepenIcon,
-		description: "Building modern, responsive web applications",
-		languages: [
-			{ name: "NextJS", highlight: true },
-			{ name: "React", highlight: true },
-			{ name: "TypeScript", highlight: true },
-			{ name: "JavaScript", highlight: false },
-			{ name: "TailwindCSS", highlight: true },
-			{ name: "Laravel", highlight: true },
-			{ name: "HTML", highlight: false },
-			{ name: "CSS", highlight: false },
-			{ name: "Bootstrap", highlight: false },
-			{ name: "Flask", highlight: false },
-			{ name: "Django", highlight: false },
-			{ name: "Firebase", highlight: false },
-		],
-		tools: [
-			"Vercel",
-			"Vite",
-			"Figma",
-			"Docker",
-			"Kubernetes",
-			"Git",
-			"Github",
-			"GitLab",
-			"Bitbucket",
-			"Google Cloud",
-			"Postman",
-		],
-	},
-	api: {
-		title: "Backend & API",
-		icon: WebhookIcon,
-		description: "Creating robust and scalable backend services",
-		languages: [
-			{ name: "Java Spring Boot", highlight: true },
-			{ name: "NodeJS", highlight: false },
-			{ name: "ExpressJS", highlight: true },
-			{ name: "PHP", highlight: false },
-			{ name: "Laravel", highlight: true },
-			{ name: "FastAPI", highlight: true },
-			{ name: "Python", highlight: false },
-			{ name: "Flask", highlight: false },
-			{ name: "Django", highlight: false },
-			{ name: "PostgreSQL", highlight: true },
-			{ name: "MySQL", highlight: true },
-			{ name: "MongoDB", highlight: false },
-			{ name: "Firebase", highlight: false },
-		],
-		tools: [
-			"Docker",
-			"Kubernetes",
-			"Postman",
-			"Swagger",
-			"Git",
-			"Github",
-			"GitLab",
-			"Bitbucket",
-			"Google Cloud",
-			"IBM Cloud",
-		],
-	},
-	ai: {
-		title: "AI & Machine Learning",
-		icon: ActivityIcon,
-		description: "Developing intelligent solutions with ML/AI",
-		languages: [
-			{ name: "RAG Pipelines", highlight: true },
-			{ name: "Gemini API", highlight: true },
-			{ name: "OpenAI API", highlight: true },
-			{ name: "LangChain", highlight: true },
-			{ name: "Python", highlight: true },
-			{ name: "TensorFlow", highlight: true },
-			{ name: "PyTorch", highlight: false },
-			{ name: "Scikit-learn", highlight: false },
-			{ name: "Pandas", highlight: false },
-			{ name: "NumPy", highlight: false },
-			{ name: "Jupyter", highlight: false },
-		],
-		tools: [
-			"Jupyter Notebook",
-			"Google Colab",
-			"Google Cloud AI",
-			"AWS SageMaker",
-			"IBM Watson",
-		],
-	},
-	mobile: {
-		title: "Mobile Development",
-		icon: MobileIcon,
-		description: "Cross-platform mobile app development",
-		languages: [
-			{ name: "React Native", highlight: true },
-			{ name: "Flutter", highlight: true },
-			{ name: "JavaScript", highlight: false },
-			{ name: "TypeScript", highlight: false },
-			{ name: "Dart", highlight: false },
-		],
-		tools: ["Android Studio", "React Native CLI"],
-	},
+  theoretical: {
+    title: "Theoretical Backgrounds",
+    icon: Atom,
+    description: "Core concepts in high-energy physics, gravity, and the early universe",
+    languages: [
+		{ name: "High-Energy Physics", highlight: true },
+		{ name: "Quantum Field Theory (QFT)", highlight: true },
+      { name: "General Relativity", highlight: true },
+      { name: "Cosmology", highlight: true },
+      { name: "Quantum Computing", highlight: true },
+    ],
+    tools: [
+      "Feynman Diagrams",
+      "Perturbation Theory",
+      "Path Integrals",
+      "Symbolic Computation (Mathematica-style)",
+    ],
+  },
+  experimental: {
+	title: "Experimental & Computational Expertise",
+	icon: Microscope,
+	description: "Data analysis, simulation, and ML-driven reconstruction in worldwide experiments",
+	languages: [
+	  { name: "Machine Learning / Deep Learning", highlight: true },
+	  { name: "Data Analysis & Statistics", highlight: true },
+	  { name: "3D Event Reconstruction", highlight: true },
+	  { name: "Signal Processing", highlight: true },
+	  { name: "Quantum Computing (Qiskit)", highlight: true },
+	  { name: "PMT & Photon Detection", highlight: true },
+	  { name: "Basic Electronics & Instrumentation", highlight: true },
+	],
+	tools: [
+	  "ROOT / CERN libraries",
+	  "SPINE (ML-based imaging)",
+	  "TensorFlow / PyTorch",
+	  "Jupyter / Google Colab",
+	  "Monte Carlo Simulations",
+	  "Digitize & Image Processing",
+	  "PMT R&D & Calibration",
+	  "IBM Qiskit",
+	],
+  },
+  tools: {
+    title: "Programming & Productivity Tools",
+    icon: Cpu,
+    description: "Development environment, documentation, and scientific communication",
+    languages: [
+      { name: "Python", highlight: true },
+      { name: "C", highlight: true },
+      { name: "C++", highlight: true },
+      { name: "LaTeX (scientific typesetting)", highlight: true },
+      { name: "HTML & CSS", highlight: true },
+    ],
+    tools: [
+      "Git / GitHub",
+      "VS Code / Jupyter",
+      "Microsoft Office / Excel (data organization)",
+      "Overleaf",
+      "Docker (reproducible environments)",
+    ],
+  },
 };
 
 function SkillCard({ skill, isSelected, onClick }) {
-	const Icon = skill.icon;
+  const Icon = skill.icon;
 
-	return (
-		<motion.div
-			onClick={onClick}
-			className={`relative cursor-pointer group p-6 rounded-2xl border transition-all duration-300 ${
-				isSelected
-					? "bg-white/20 border-black border-2 shadow-lg"
-					: "bg-white/10 border-gray-300/20 hover:bg-white/20 hover:border-gray-300/30"
-			}`}
-			whileHover={{ scale: 1.03 }}
-			whileTap={{ scale: 0.97 }}
-			initial={{ opacity: 0, y: 20 }}
-			animate={{ opacity: 1, y: 0 }}
-			transition={{ duration: 0.3 }}>
-			{/* Glow effect - removed for selected state */}
-			{!isSelected && (
-				<div className="absolute inset-0 rounded-2xl transition-opacity duration-300 opacity-0 group-hover:opacity-50 bg-gradient-to-r from-gray-400/20 to-gray-600/20 blur-xl" />
-			)}
+  return (
+    <motion.div
+      onClick={onClick}
+      className={`relative cursor-pointer group p-6 rounded-2xl border transition-all duration-300 ${
+        isSelected
+          ? "bg-white/20 border-black border-2 shadow-lg"
+          : "bg-white/10 border-gray-300/20 hover:bg-white/20 hover:border-gray-300/30"
+      }`}
+      whileHover={{ scale: 1.03 }}
+      whileTap={{ scale: 0.97 }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3 }}
+    >
+      {!isSelected && (
+        <div className="absolute inset-0 rounded-2xl transition-opacity duration-300 opacity-0 group-hover:opacity-50 bg-gradient-to-r from-gray-400/20 to-gray-600/20 blur-xl" />
+      )}
 
-			<div className="relative z-10 flex flex-col items-center text-center space-y-4">
-				<div
-					className={`p-4 rounded-xl transition-all duration-300 ${
-						isSelected ? "bg-white/30" : "bg-white/10 group-hover:bg-white/20"
-					}`}>
-					<Icon className="w-8 h-8 text-black" />
-				</div>
-				<div>
-					<h3 className="font-semibold text-black text-lg mb-2">
-						{skill.title}
-					</h3>
-					<p className="text-gray-600 text-sm leading-relaxed">
-						{skill.description}
-					</p>
-				</div>
-			</div>
-		</motion.div>
-	);
+      <div className="relative z-10 flex flex-col items-center text-center space-y-4">
+        <div
+          className={`p-4 rounded-xl transition-all duration-300 ${
+            isSelected ? "bg-white/30" : "bg-white/10 group-hover:bg-white/20"
+          }`}
+        >
+          <Icon className="w-8 h-8 text-black" />
+        </div>
+        <div>
+          <h3 className="font-semibold text-black text-lg mb-2">{skill.title}</h3>
+          <p className="text-gray-600 text-sm leading-relaxed">{skill.description}</p>
+        </div>
+      </div>
+    </motion.div>
+  );
 }
+
 const tagVariants = {
   hidden: { opacity: 0, scale: 0.8 },
   show: { opacity: 1, scale: 1 },
@@ -164,7 +123,6 @@ function SkillDetails({ selectedSkill }) {
       transition={{ duration: 0.5 }}
       className="mt-12 space-y-8"
     >
-      {/* Languages & Frameworks Section */}
       <motion.div
         className="bg-white/40 border border-gray-300/30 rounded-2xl p-8 shadow-sm"
         initial={{ opacity: 0, x: -50 }}
@@ -172,7 +130,7 @@ function SkillDetails({ selectedSkill }) {
         transition={{ delay: 0.2 }}
       >
         <h3 className="text-2xl font-semibold text-black mb-6 text-center">
-          Technology Stack
+          Core Competencies
         </h3>
         <motion.div
           key={selectedSkill.title}
@@ -201,7 +159,6 @@ function SkillDetails({ selectedSkill }) {
         </motion.div>
       </motion.div>
 
-      {/* Tools Section */}
       <motion.div
         className="bg-white/20 border border-gray-300/20 rounded-2xl p-8"
         initial={{ opacity: 0, x: 50 }}
@@ -209,7 +166,7 @@ function SkillDetails({ selectedSkill }) {
         transition={{ delay: 0.4 }}
       >
         <h3 className="text-xl font-medium text-gray-500 mb-6 text-center uppercase tracking-wider">
-          Infrastructure & Tools
+          Supporting Tools & Software
         </h3>
         <motion.div
           key={selectedSkill.title + "-tools"}
@@ -234,46 +191,47 @@ function SkillDetails({ selectedSkill }) {
 }
 
 export default function Skills() {
-	const [selectedCategory, setSelectedCategory] = useState("web");
-	return (
-		<div className="relative">
-			<div className="mx-auto container px-6 py-20">
-				<motion.div
-					initial={{ opacity: 0, y: -20 }}
-					whileInView={{ opacity: 1, y: 0 }}
-					transition={{ duration: 0.6 }}
-					className="text-center space-y-4 mb-16">
-					<h2 className="text-5xl font-bold bg-gradient-to-r from-black to-gray-600 bg-clip-text text-transparent">
-						Skills & Expertise
-					</h2>
-					<p className="text-gray-600 max-w-2xl mx-auto text-lg leading-relaxed">
-						Explore my technical skills across different domains. Click on any
-						category to see the specific technologies and tools I work with.
-					</p>
-				</motion.div>
+  const [selectedCategory, setSelectedCategory] = useState("experimental");
 
-				{/* Skill Categories Grid */}
-				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-					{Object.entries(skillCategories).map(([key, skill], index) => (
-						<motion.div
-							key={key}
-							initial={{ opacity: 0, y: 20 }}
-							whileInView={{ opacity: 1, y: 0 }}
-							transition={{ delay: index * 0.1 }}>
-							<SkillCard
-								skill={skill}
-								isSelected={selectedCategory === key}
-								onClick={() => setSelectedCategory(key)}
-							/>
-						</motion.div>
-					))}
-				</div>
+  return (
+    <div className="relative">
+      <div className="mx-auto container px-6 py-20">
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center space-y-4 mb-16"
+        >
+          <h2 className="text-5xl font-bold bg-gradient-to-r from-black to-gray-600 bg-clip-text text-transparent">
+            Research Skills & Expertise
+          </h2>
+          <p className="text-gray-600 max-w-2xl mx-auto text-lg leading-relaxed">
+            Core competencies in theoretical physics, experimental methods, and computational tools supporting high-energy and neutrino research.
+          </p>
+        </motion.div>
 
-				{/* Skill Details */}
-				<AnimatePresence mode="wait">
-					<SkillDetails selectedSkill={skillCategories[selectedCategory]} />
-				</AnimatePresence>
-			</div>
-		</div>
-	);
+        {/* Skill Categories Grid – now 3 columns on large screens */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          {Object.entries(skillCategories).map(([key, skill], index) => (
+            <motion.div
+              key={key}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+            >
+              <SkillCard
+                skill={skill}
+                isSelected={selectedCategory === key}
+                onClick={() => setSelectedCategory(key)}
+              />
+            </motion.div>
+          ))}
+        </div>
+
+        <AnimatePresence mode="wait">
+          <SkillDetails selectedSkill={skillCategories[selectedCategory]} />
+        </AnimatePresence>
+      </div>
+    </div>
+  );
 }

@@ -6,9 +6,6 @@ import Button from "@/components/Button";
 import Image from "next/image";
 
 // images
-import Intervyou1 from "@/public/image/projects/web/intervyou/intervyou-1.png";
-import Intervyou2 from "@/public/image/projects/web/intervyou/intervyou-2.png";
-import Intervyou3 from "@/public/image/projects/web/intervyou/intervyou-3.png";
 import ProjectAll from "@/public/image/projects.png";
 
 import Hr from "@/components/Hr";
@@ -17,6 +14,8 @@ import Projects from "@/json/data.json";
 import FixedButon from "@/components/FixedButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import { faOrcid, faResearchgate, faWikipediaW } from "@fortawesome/free-brands-svg-icons";
+import { faGraduationCap, faAtom } from "@fortawesome/free-solid-svg-icons";
 
 const category = {
 	1: "Web Development",
@@ -31,6 +30,7 @@ export default function Page() {
 	useEffect(() => {
 		window.scrollTo(0, 0);
 	}, []);
+	
 	return (
 		<>
 			<main className="overflow-hidden">
@@ -43,7 +43,7 @@ export default function Page() {
 							initial={{ scale: 1 }}
 							animate={{ scale: 1.6 }}
 							transition={{ duration: 1, ease: "circOut" }}
-							className="relative bg-slate-300 rounded-sm h-[400px] md:h-[600px] w-[80vw] md:w-[30vw] grayscale hover:grayscale-0 ">
+							className="relative bg-slate-300 rounded-sm h-[400px] md:h-[300px] w-[50vw] md:w-[30vw] grayscale-3 hover:grayscale-0 ">
 							<Image
 								src={ProjectAll}
 								alt="Alvalens"
@@ -77,207 +77,147 @@ export default function Page() {
 								});
 							}}
 							className="mb-3">
-							<Button variation="primary">Scroll Down</Button>
+							<Button variation="primary" style={{ padding: '1.2rem 2.8rem', fontSize: '1.65rem' }}>Scroll Down</Button>
 						</motion.div>
 					</div>
 				</div>
+
+				{/* Publications Section */}
 				<div className="mt-10 flex flex-col justify-start items-center w-full pl-10 md:pl-32">
 					<div className="flex justify-center items-center flex-col my-5 self-start ">
 						<Hr variant="long"></Hr>
-						<h1 className="text-3xl font-bold mt-3">Hightlight</h1>
+						<h1 className="text-3xl font-bold mt-3">Publications</h1>
 					</div>
 				</div>
-				<div className="relative w-screen mx-auto container gap-4 px-10 grid grid-cols-1 md:grid-cols-2 mb-10">
-					<div className="flex justify-center items-start flex-col mb-5 ">
-						<div className="images relative w-full  aspect-square">
-							<div className="absolute top-28 left-10 h-[40%]  aspect-video grayscale hover:grayscale-0 transition-all ease duration-300 hover:scale-150 z-10">
-								<motion.div
-									initial={{ opacity: 0, scale: 0.5, x: 100 }}
-									whileInView={{
-										opacity: 1,
-										scale: 1,
-										x: 0,
-									}}
-									className="relative w-full h-full shadow-lg">
-									<Image
-										src={Intervyou1}
-										alt="Alvalens"
-										fill
-										placeholder="blur"
-										className="rat object-cover"
-										sizes="50vw"
-									/>
-								</motion.div>
+
+				<div className="w-screen mx-auto container gap-8 px-10 mb-16">
+					{/* Main Academic Profiles - Google Scholar & INSPIRE-HEP */}
+					<motion.div
+						initial={{ opacity: 0, y: 50 }}
+						whileInView={{ opacity: 1, y: 0 }}
+						transition={{ delay: 0.2, type: "spring" }}
+						className="flex flex-col items-center mb-12">
+						<div className="grid grid-cols-1 md:grid-cols-2 gap-12 w-full max-w-5xl mb-8">
+							{/* Google Scholar */}
+							<div className="flex flex-col items-center">
+								<a href="https://scholar.google.com/citations?user=OVLnx_sAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center group mb-6">
+									<div className="w-32 h-32 flex items-center justify-center bg-gradient-to-br from-blue-50 to-blue-100 rounded-full group-hover:from-blue-100 group-hover:to-blue-200 transition-all duration-300 mb-4 shadow-lg">
+										<FontAwesomeIcon icon={faGraduationCap} className="text-7xl text-blue-600" />
+									</div>
+									<span className="text-2xl font-bold text-gray-800 group-hover:text-blue-600 transition-colors text-center mb-2">Google Scholar</span>
+								</a>
+								<a href="https://scholar.google.com/citations?user=OVLnx_sAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">
+									<Button variation="primary" style={{ padding: '1.2rem 2.8rem', fontSize: '1.65rem' }}>
+										Enter
+									</Button>
+								</a>
 							</div>
-							<div className="absolute top-10 right-28 h-[30%]  aspect-video grayscale hover:grayscale-0 transition-all ease duration-300 hover:scale-150">
-								<motion.div
-									initial={{
-										opacity: 0,
-										scale: 0.5,
-										x: -100,
-									}}
-									whileInView={{
-										opacity: 1,
-										scale: 1,
-										x: 0,
-									}}
-									transition={{ delay: 0.3 }}
-									className="relative w-full h-full shadow-lg ">
-									<Image
-										src={Intervyou3}
-										alt="Alvalens"
-										fill
-										placeholder="blur"
-										className="object-cover"
-										style={{ objectPosition: "0% 0%" }}
-										sizes="40vw"
-									/>
-								</motion.div>
-							</div>
-							<div className="absolute bottom-10 md:bottom-26 right-20 h-[35%]  aspect-video grayscale hover:grayscale-0 transition-all ease duration-300 hover:scale-150">
-								<motion.div
-									initial={{
-										opacity: 0,
-										scale: 0.5,
-										x: -100,
-									}}
-									whileInView={{
-										opacity: 1,
-										scale: 1,
-										x: 0,
-									}}
-									transition={{
-										delay: 0.5,
-									}}
-									className="relative w-full h-full shadow-lg">
-									<Image
-										src={Intervyou2}
-										alt="Alvalens"
-										fill
-										placeholder="blur"
-										className="object-cover"
-										sizes="40vw"
-									/>
-								</motion.div>
+
+							{/* INSPIRE-HEP */}
+							<div className="flex flex-col items-center">
+								<a href="https://inspirehep.net/authors/1848396" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center group mb-6">
+									<div className="w-32 h-32 flex items-center justify-center bg-gradient-to-br from-purple-50 to-purple-100 rounded-full group-hover:from-purple-100 group-hover:to-purple-200 transition-all duration-300 mb-4 shadow-lg">
+										<FontAwesomeIcon icon={faAtom} className="text-7xl text-purple-600" />
+									</div>
+									<span className="text-2xl font-bold text-gray-800 group-hover:text-purple-600 transition-colors text-center mb-2">INSPIRE-HEP</span>
+								</a>
+								<a href="https://inspirehep.net/authors/1848396" target="_blank" rel="noopener noreferrer">
+									<Button variation="primary" style={{ padding: '1.2rem 2.8rem', fontSize: '1.65rem' }}>
+										Enter
+									</Button>
+								</a>
 							</div>
 						</div>
-					</div>
+					</motion.div>
+
+					{/* Additional Academic Profile Links */}
 					<motion.div
-						className="flex justify-center items-start flex-col mb-5 md:px-10"
-						initial={{
-							opacity: 0,
-							x: 200,
-						}}
-						whileInView={{
-							opacity: 1,
-							x: 0,
-						}}
-						transition={{
-							delay: 0.5,
-							type: "spring",
-						}}>
-						<h2 className="text-2xl font-bold tracking-wider mb-3">
-							Intervyou AI
-						</h2>
-						<p className="text-gray-600 text-justify title text-lg">
-							AI Based interview Preparation Website created to help fresh
-							graduates and job seekers prepare for interviews and optimize
-							their CV through AI-powered features. The website is built using
-							Next.js, TypeScript, Tailwind CSS, Shadcn UI, Prisma, and MySQL
-							(TiDB). This website can comprehensively analyze the user&apos;s
-							interview performance by providing a analysis of the user&apos;s
-							answer, gesture, and material recommendation to improve the user&apos;s
-							interview skills.
-						</p>{" "}
-						<div className="mt-3">
-							<Button variation="primary">
-								<Link href="projects/intervyou">More</Link>
-							</Button>
-							<Button variation="secondary">
-								<a
-									href="https://www.intervyou.me"
-									target="_blank"
-									rel="noopener noreferrer">
-									Preview
-								</a>
-							</Button>
+						initial={{ opacity: 0, y: 50 }}
+						whileInView={{ opacity: 1, y: 0 }}
+						transition={{ delay: 0.4, type: "spring" }}
+						className="flex flex-col items-center">
+						<h3 className="text-xl font-semibold mb-6 text-gray-700">Other Academic Profiles</h3>
+						<div className="flex flex-wrap justify-center gap-8">
+							{/* ORCID */}
+							<a href="https://orcid.org/0000-0001-7148-0732" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center group">
+								<div className="w-24 h-24 flex items-center justify-center bg-gray-100 rounded-full group-hover:bg-green-100 transition-all duration-300 mb-3 shadow-md">
+									<FontAwesomeIcon icon={faOrcid} className="text-6xl text-green-600" />
+								</div>
+								<span className="text-base font-medium text-gray-700 group-hover:text-green-600 transition-colors text-center">ORCID</span>
+							</a>
+
+							{/* ResearchGate */}
+							<a href="https://www.researchgate.net/profile/Castaly-Fan" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center group">
+								<div className="w-24 h-24 flex items-center justify-center bg-gray-100 rounded-full group-hover:bg-cyan-100 transition-all duration-300 mb-3 shadow-md">
+									<FontAwesomeIcon icon={faResearchgate} className="text-6xl text-cyan-600" />
+								</div>
+								<span className="text-base font-medium text-gray-700 group-hover:text-cyan-600 transition-colors text-center">ResearchGate</span>
+							</a>
+
+							{/* Wikipedia */}
+							<a href="https://en.wikipedia.org/wiki/User:Castaly_Fan" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center group">
+								<div className="w-24 h-24 flex items-center justify-center bg-gray-100 rounded-full group-hover:bg-gray-300 transition-all duration-300 mb-3 shadow-md">
+									<FontAwesomeIcon icon={faWikipediaW} className="text-6xl text-gray-700" />
+								</div>
+								<span className="text-base font-medium text-gray-700 group-hover:text-gray-900 transition-colors text-center">Wikipedia</span>
+							</a>
 						</div>
 					</motion.div>
 				</div>
+
+				{/* Highlight Projects Section */}
 				<div className="mt-16 flex flex-col justify-start items-center w-full pl-10 md:pl-32">
 					<div className="flex justify-center items-center flex-col my-5 self-start">
 						<Hr variant="long"></Hr>
 						<motion.h1
 							className="text-3xl font-bold mt-3"
-							initial={{
-								opacity: 0,
-								x: -200,
-							}}
-							whileInView={{
-								opacity: 1,
-								x: 0,
-							}}
-							transition={{
-								delay: 0.7,
-								type: "spring",
-							}}>
-							Other Note Worthy Projects
+							initial={{ opacity: 0, x: -200 }}
+							whileInView={{ opacity: 1, x: 0 }}
+							transition={{ delay: 0.7, type: "spring" }}>
+							Highlight Projects
 						</motion.h1>
 					</div>
 				</div>
 
-				{/* choose category */}
-				<motion.div
-					initial={{
-						opacity: 0,
-						x: 200,
-					}}
-					whileInView={{
-						opacity: 1,
-						x: 0,
-					}}
-					transition={{
-						type: "spring",
-					}}
-					className="flex flex-row justify-center items-start flex-wrap gap-3 md:gap-5 my-5 ">
-					{Object.keys(category).map((key, index) => (
-						<button
-							key={index}
-							className={`px-2 md:px-4 py-2 rounded-lg cursor-pointer transition-all ease duration-300 focus:bg-gray-300 focus:text-black focus:ring focus:ring-slate-500 ${
-								activeCategory === key
-									? "bg-gray-300 text-black hover:bg-gray-700 hover:text-white"
-									: "bg-gray-700 text-white hover:bg-gray-300 hover:text-black"
-							}`}
-							onClick={() => setActiveCategory(key)}>
-							{category[key]}
-						</button>
-					))}
-				</motion.div>
+				{/* SBND Project with Embed */}
+				<div className="w-screen mx-auto container gap-4 px-10 mb-10">
+					<div className="relative w-full mx-auto container gap-4 grid grid-cols-1 md:grid-cols-2">
+						{/* Left side - Embedded website */}
+						<motion.div
+							className="flex justify-center items-start"
+							initial={{ opacity: 0, x: -100 }}
+							whileInView={{ opacity: 1, x: 0 }}
+							transition={{ delay: 0.2, type: "spring" }}>
+							<div className="relative w-full h-[500px] bg-white rounded-lg shadow-lg overflow-hidden">
+								<iframe
+									src="https://sbn-nd.fnal.gov/"
+									className="w-full h-full"
+									title="SBND Website"
+								/>
+							</div>
+						</motion.div>
 
-				{/* projects */}
-				<div className="w-screen mx-auto container gap-4 px-10 grid grid-cols-1 md:grid-cols-2 mb-10 cursor-pointer">
-					{projects.map((project, index) => (
-						<ProjectCard
-							project={project}
-							key={index}
-							activeCategory={activeCategory}
-						/>
-					))}
+						{/* Right side - Description */}
+						<motion.div
+							className="flex justify-center items-center flex-col p-8"
+							initial={{ opacity: 0, x: 100 }}
+							whileInView={{ opacity: 1, x: 0 }}
+							transition={{ delay: 0.3, type: "spring" }}>
+							<h2 className="text-3xl font-bold tracking-wider mb-4 text-gray-800">
+								SBND at Fermilab
+							</h2>
+							<p className="text-gray-600 text-center text-lg mb-6">
+								The Short-Baseline Near Detector (SBND) is a neutrino experiment at Fermi National Accelerator Laboratory, 
+								designed to investigate neutrino oscillations and search for physics beyond the Standard Model.
+							</p>
+							<a href="https://sbn-nd.fnal.gov/" target="_blank" rel="noopener noreferrer">
+								<Button variation="primary" style={{ padding: '1.2rem 2.8rem', fontSize: '1.65rem' }}>
+									Visit SBND
+								</Button>
+							</a>
+						</motion.div>
+					</div>
 				</div>
-
-				{/* view in archive btn */}
-				<motion.div
-					initial={{
-						opacity: 0,
-					}}
-					whileInView={{
-						opacity: 1,
-					}}
-					className="flex justify-center items-center flex-col my-5 self-start ">
-					<Button variation="primary">
-						<Link href="projects/archive">View In Archive</Link>
-					</Button>
-				</motion.div>
 			</main>
 		</>
 	);

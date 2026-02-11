@@ -7,7 +7,6 @@ import FixedButton from "@/components/FixedButton";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
-import Quote from "./components/quote/quote.jsx";
 import Skills from "./components/skills/skills.jsx";
 import Experience from "./components/experience.jsx";
 import Education from "./components/education.jsx";
@@ -39,13 +38,15 @@ export default function Page() {
 							initial={{ scale: 1 }}
 							animate={{ scale: 1.6 }}
 							transition={{ ease: "circOut", duration: 1 }}
-							className="relative bg-slate-300 rounded-sm h-[400px] md:h-[600px] w-[80vw] md:w-[30vw] grayscale hover:grayscale-0 ">
+							className="relative bg-slate-300 rounded-sm h-[400px] md:h-[400px] w-[80vw] md:w-[30vw] grayscale-3 hover:grayscale-0 ">
 							<Image
 								src={Hero}
 								alt="Alvalen Shafel"
 								fill
-								sizes="(max-width: 768px) 80vw, 30vw"
+								sizes="(max-width: 768px) 100vw, 48vw" 
 								className="object-cover"
+								quality={100}
+								priority
 								placeholder="blur"
 							/>
 						</motion.div>
@@ -72,7 +73,7 @@ export default function Page() {
 								});
 							}}
 							className="mb-3">
-							<Button variation="primary">Scroll Down</Button>
+							<Button variation="primary"  style={{ padding: '1.2rem 2.8rem', fontSize: '1.65rem' }}>Scroll Down</Button>
 						</motion.div>
 					</div>
 				</div>
@@ -82,21 +83,19 @@ export default function Page() {
 				<About />
 				{/* end about */}
 
-				{/* skills */}
-				<Skills />
-				{/* end skills */}
-
-				{/* experience */}
-				<Experience />
-				{/* end experience */}
-
 				{/* Education */}
 				<Education />
 				{/* end Education */}
 
-				{/* Quote */}
-				<Quote />
-				{/* end Quote */}
+				
+				{/* experience */}
+				<Experience />
+				{/* end experience */}
+
+				{/* skills */}
+				<Skills />
+				{/* end skills */}
+
 			</main>
 		</>
 	);

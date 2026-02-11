@@ -11,18 +11,19 @@ import { FullPageWrapper, Section, useFullPage } from "@alvalens/react-fullpage-
 
 // components
 import Button from "@/components/Button";
-import Me from "@/public/image/alvalen-front.webp";
+import Me from "@/public/image/profile00.webp";
 import MeAbout from "@/public/image/me2.jpg";
 import Setup from "@/public/image/setup.jpg";
 import ProjectAll from "@/public/image/projects.png";
+import BkgImage from "@/public/image/bkg.png";
 import Hr from "@/components/Hr";
 // icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
-import { faDiscord } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import Quote from "../about/components/quote/quote.jsx";
+
 
 function ScrollIndicator() {
 	const { activeIndex } = useFullPage();
@@ -63,6 +64,8 @@ function ScrollIndicator() {
 }
 
 const MyPage = () => {
+	const { activeIndex } = useFullPage();
+
 	return (
 		<FullPageWrapper>
 			<Section>
@@ -75,11 +78,11 @@ const MyPage = () => {
 							type: "spring",
 						}}>
 						<div className="block md:hidden col-span-1 mx-auto my-10">
-							<div className="bg-slate-500 rounded-full h-60 w-60 grayscale hover:grayscale-0 transition-all ease duration-300">
+							<div className="bg-slate-500 rounded-full h-60 w-60 grayscale-3 hover:grayscale-0 transition-all ease duration-300">
 								<Image
 									src={Me}
 									width={500}
-									height={500}
+									height={400}
 									className="rounded-full w-full h-full object-cover "
 									alt="Alvalens"
 									placeholder="blur"
@@ -94,7 +97,7 @@ const MyPage = () => {
 								delay: 0.2,
 								type: "spring",
 							}}>
-							Alvalen Shafel
+							Bridging Fundamental Science and Technology
 						</motion.h3>
 						<motion.h1
 							className="text-black text-4xl md:text-6xl lg:text-6xl 2xl:text-8xl font-bold my-2 md:my-5"
@@ -104,7 +107,7 @@ const MyPage = () => {
 								delay: 0.3,
 								type: "spring",
 							}}>
-							Full Stack Software Engineer
+							Castaly Fan
 						</motion.h1>
 						<motion.p
 							className="title text-md 2xl:text-xl mt-4 tracking-wider text-gray-500 leading-[1.7rem]"
@@ -114,12 +117,7 @@ const MyPage = () => {
 								delay: 0.4,
 								type: "spring",
 							}}>
-							Hi! I&rsquo;am Alvalen, A fullstack software
-							engineer specializing in modern Web Development with
-							a growing focus on Artificial Intelligence. I
-							architect scalable, production-ready engines—from
-							high-traffic Java microservices to RAG-powered SaaS
-							platforms.
+							Hi, welcome to Castaly's homepage. I am a Physics PhD candidate specializing in high-energy physics, with a current focus on experimental neutrino physics and searches for physics beyond the Standard Model (BSM). My research spans cosmology, astrophysics, and high-energy theoretical physics, bridging fundamental science with cutting-edge experimental techniques. Explore the pages below to learn more about my work and interests.
 						</motion.p>
 						<motion.div
 							className="buttons flex flex-row justify-center items-center space-x-4 mt-10"
@@ -129,17 +127,17 @@ const MyPage = () => {
 								delay: 0.5,
 								type: "spring",
 							}}>
-							<Button variation="primary">
+							<Button 
+								variation="primary"
+								style={{ padding: '1.2rem 2.8rem', fontSize: '1.65rem' }}
+							>
 								<Link
-									href={"/docs/cv.pdf"}
+									href="/docs/cv.pdf"
 									target="_blank"
 									rel="noopener noreferrer"
-									download>
-									Download CV
+								>
+									View My CV
 								</Link>
-							</Button>
-							<Button variation="secondary">
-								<a href="#contact">Contact Me</a>
 							</Button>
 						</motion.div>
 					</motion.div>
@@ -151,7 +149,7 @@ const MyPage = () => {
 							delay: 0.7,
 							type: "spring",
 						}}>
-						<div className="rounded-full h-auto w-auto max-w-[26vw] lg:px-12 grayscale hover:grayscale-0 transition-all ease duration-300">
+						<div className="rounded-full h-auto w-auto max-w-[26vw] lg:px-12 grayscale-3 hover:grayscale-0 transition-all ease duration-300">
 							<Image
 								src={Me}
 								width={400}
@@ -164,11 +162,60 @@ const MyPage = () => {
 					</motion.div>
 				</div>
 			</Section>
+
+			{/* Quote Section with Animated Dark Background */}
+			<Section>
+				<div className="relative h-screen w-screen flex justify-center items-center overflow-hidden">
+					{/* Animated Background Image - NO BLUR */}
+					<motion.div
+						className="absolute inset-0 z-0"
+						initial={{ opacity: 5, scale: 1.05 }}
+						animate={{ 
+							opacity: activeIndex === 1 ? 1 : 0,
+							scale: activeIndex === 1 ? 1 : 1.05 
+						}}
+						transition={{ 
+							duration: 1.2,
+							ease: "easeInOut"
+						}}>
+						<Image
+							src={BkgImage}
+							fill
+							className="object-cover"
+							alt="Background"
+							quality={100}
+							priority
+						/>
+						{/* Soft vignette effect */}
+						<div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/50" />
+					</motion.div>
+
+					{/* Quote Content with bright text */}
+					<motion.div 
+						className="relative z-10 w-full"
+						initial={{ opacity: 5, y: 20 }}
+						animate={{ 
+							opacity: activeIndex === 1 ? 1 : 0,
+							y: activeIndex === 1 ? 0 : 20
+						}}
+						transition={{ 
+							duration: 0.8,
+							delay: 0.3,
+							ease: "easeOut"
+						}}>
+						<Quote />
+					</motion.div>
+
+					{/* Gradient fade to next section */}
+					<div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-gray-50 z-20 pointer-events-none" />
+				</div>
+			</Section>
+
 			<Section>
 				<div className="relative md:h-screen w-screen gap-4 flex justify-center items-center flex-col overflow-hidden">
 					<div className="z-0 mb-48 md:mb-0  md:absolute md:top-1/2  md:right-[10%] md:-translate-y-1/2">
 						<motion.div
-							className="relative bg-slate-300 rounded-sm h-[400px] md:h-[60vh] w-[80vw] md:w-[30vw] grayscale hover:grayscale-0"
+							className="relative bg-slate-300 rounded-sm h-[400px] md:h-[60vh] w-[90vw] md:w-[40vw] grayscale-3 hover:grayscale-0"
 							initial={{
 								x: 300,
 								opacity: 0,
@@ -188,7 +235,7 @@ const MyPage = () => {
 							<Image
 								src={MeAbout}
 								fill
-								sizes="(max-width: 768px) 80vw, 30vw"
+								sizes="(max-width: 800px) 80vw, 50vw"
 								className="object-cover"
 								alt="Alvalens"
 								placeholder="blur"
@@ -215,8 +262,7 @@ const MyPage = () => {
 								delay: 0.2,
 								type: "spring",
 							}}>
-							A brief introduction my journey as a software
-							engineer.
+							A brief introduction my journey in physics.
 						</motion.p>
 						<motion.div
 							initial={{ y: 40, opacity: 0 }}
@@ -225,7 +271,10 @@ const MyPage = () => {
 								delay: 0.3,
 								type: "spring",
 							}}>
-							<Button variation="primary">
+							<Button 
+								variation="primary" 
+								style={{ padding: '1.2rem 2.8rem', fontSize: '1.65rem' }}
+							>
 								<Link href="/about">Learn More</Link>
 							</Button>
 						</motion.div>
@@ -236,7 +285,7 @@ const MyPage = () => {
 				<div className="relative md:h-screen w-screen gap-4 p-10 flex justify-center items-center flex-col overflow-hidden">
 					<div className="z-0 mb-48 md:mb-0  md:absolute md:top-1/2  md:right-[10%] md:-translate-y-1/2">
 						<motion.div
-							className="relative bg-slate-300 rounded-sm h-[400px] md:h-[60vh] w-[80vw] md:w-[30vw] grayscale hover:grayscale-0"
+							className="relative bg-slate-300 rounded-sm h-[400px] md:h-[50vh] w-[50vw] md:w-[35vw] grayscale-3 hover:grayscale-0"
 							initial={{
 								x: 300,
 								opacity: 0,
@@ -256,7 +305,7 @@ const MyPage = () => {
 							<Image
 								src={ProjectAll}
 								fill
-								sizes="(max-width: 768px) 80vw, 30vw"
+								sizes="(max-width: 768px) 80vw, 50vw"
 								className="object-cover"
 								alt="Alvalens Setup"
 								placeholder="blur"
@@ -296,7 +345,10 @@ const MyPage = () => {
 								delay: 0.3,
 								type: "spring",
 							}}>
-							<Button variation="primary">
+							<Button 
+								variation="primary" 
+								style={{ padding: '1.2rem 2.8rem', fontSize: '1.65rem' }}
+							>
 								<Link href="/projects">Learn More</Link>
 							</Button>
 						</motion.div>
@@ -307,7 +359,7 @@ const MyPage = () => {
 				<div className="relative md:h-screen w-screen  gap-4 p-10 flex justify-center items-center flex-col overflow-hidden">
 					<div className="z-0 mb-48 md:mb-0  md:absolute md:top-1/2  md:right-[10%] md:-translate-y-1/2">
 						<motion.div
-							className="relative bg-slate-300 rounded-sm h-[400px] md:h-[60vh] w-[80vw] md:w-[30vw] grayscale hover:grayscale-0"
+							className="relative bg-slate-300 rounded-sm h-[400px] md:h-[50vh] w-[80vw] md:w-[35vw] grayscale-3 hover:grayscale-0"
 							initial={{
 								x: 300,
 								opacity: 0,
@@ -327,7 +379,7 @@ const MyPage = () => {
 							<Image
 								src={Setup}
 								fill
-								sizes="(max-width: 768px) 80vw, 30vw"
+								sizes="(max-width: 768px) 80vw, 50vw"
 								className="object-cover"
 								alt="Alvalens Setup"
 								placeholder="blur"
@@ -367,14 +419,14 @@ const MyPage = () => {
 								delay: 0.3,
 								type: "spring",
 							}}>
-							<a href="mailto:Alvalen.shafel04@gmail.com?subject=Hello&body=Hello Alvalens,">
-								alvalen.shafel04@gmail.com
+							<a href="mailto:castaly.fan@gmail.com?subject=Hello&body=Hello Castaly,">
+								castaly.fan@gmail.com
 							</a>
 						</motion.p>
 						{/* icons */}
 						<div className="flex justify-center items-center space-x-4">
 							<motion.a
-								href="mailto:Alvalen.shafel04@gmail.com?subject=Hello&body=Hello Alvalens,"
+								href="mailto:castaly.fan@gmail.com?subject=Hello&body=Hello Castaly,"
 								aria-label="Send email"
 								className="flex justify-center items-center bg-gray-700 w-14 h-14 rounded-full text-gray-100 hover:bg-gray-400 transition-all ease-in-out duration-300"
 								initial={{ y: 40, opacity: 0 }}
@@ -390,7 +442,7 @@ const MyPage = () => {
 							</motion.a>
 
 							<motion.a
-								href="https://github.com/Alvalens"
+								href="https://github.com/castalyfan1012"
 								target="_blank"
 								rel="noopener noreferrer"
 								aria-label="GitHub profile"
@@ -406,25 +458,9 @@ const MyPage = () => {
 									className="text-3xl"
 								/>
 							</motion.a>
+
 							<motion.a
-								href="https://www.instagram.com/alvalens_/"
-								target="_blank"
-								rel="noopener noreferrer"
-								aria-label="Instagram profile"
-								className="flex justify-center items-center bg-gray-700 w-14 h-14 rounded-full text-gray-100 hover:bg-gray-400 transition-all ease-in-out duration-300"
-								initial={{ opacity: 0, y: 40 }}
-								whileInView={{ opacity: 1, y: 0 }}
-								transition={{
-									y: { delay: 0.3 },
-									opacity: { delay: 0.4 },
-								}}>
-								<FontAwesomeIcon
-									icon={faInstagram}
-									className="text-3xl"
-								/>
-							</motion.a>
-							<motion.a
-								href="https://www.linkedin.com/in/alvalen-shafel-8a081a254/"
+								href="https://www.linkedin.com/in/castaly-fan-571379a8/"
 								target="_blank"
 								rel="noopener noreferrer"
 								aria-label="LinkedIn profile"
@@ -440,27 +476,11 @@ const MyPage = () => {
 									className="text-3xl"
 								/>
 							</motion.a>
-							<motion.a
-								href="https://discordapp.com/users/bloody#6118"
-								target="_blank"
-								rel="noopener noreferrer"
-								aria-label="Discord profile"
-								className="flex justify-center items-center bg-gray-700 w-14 h-14 rounded-full text-gray-100 hover:bg-gray-400 transition-all ease-in-out duration-300"
-								initial={{ opacity: 0, y: 40 }}
-								whileInView={{ opacity: 1, y: 0 }}
-								transition={{
-									y: { delay: 0.5 },
-									opacity: { delay: 0.6 },
-								}}>
-								<FontAwesomeIcon
-									icon={faDiscord}
-									className="text-3xl"
-								/>
-							</motion.a>
 						</div>
 					</div>
 				</div>
 			</Section>
+			
 			<ScrollIndicator />
 		</FullPageWrapper>
 	);
