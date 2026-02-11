@@ -101,7 +101,7 @@ const MyPage = () => {
             transition={{ type: "spring" }}
           >
             <motion.h3
-              className="uppercase text-sm sm:text-base md:text-xl mb-3 font-normal tracking-[.5rem] text-gray-500"
+              className="uppercase text-xs sm:text-sm md:text-xl mb-3 font-normal tracking-[.5rem] text-gray-500"
               initial={{ x: -100, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               viewport={{ once: true }}
@@ -140,7 +140,7 @@ const MyPage = () => {
             >
               <Button
                 variation="primary"
-                className="px-10 py-6 text-xl sm:text-2xl md:text-[1.65rem] md:px-[2.8rem] md:py-[1.2rem]"
+                className="px-10 py-5 text-2xl sm:text-3xl md:text-[1.65rem] md:px-[2.8rem] md:py-[1.2rem]"
               >
                 <Link
                   href="/docs/cv.pdf"
@@ -219,7 +219,7 @@ const MyPage = () => {
       {/* ABOUT SECTION */}
       <Section>
         <div className="relative md:h-screen w-screen gap-4 flex justify-center items-center flex-col overflow-hidden">
-          <div className="z-0 mb-48 md:mb-0 md:absolute md:top-1/2 md:right-[10%] md:-translate-y-1/2">
+          <div className="z-0 mb-15 md:mb-0 md:absolute md:top-1/2 md:right-[10%] md:-translate-y-1/2">
             <motion.div
               className="
                 relative bg-slate-300 rounded-sm 
@@ -246,7 +246,8 @@ const MyPage = () => {
 
           <div className="
             z-10 w-full 
-            relative md:absolute md:w-auto md:left-[10%] md:top-1/3 
+            relative md:absolute md:w-auto md:left-[10%] 
+  			top-[60%] md:top-1/3 
             flex flex-col justify-center items-start text-start 
             px-10 py-10 md:py-5
           ">
@@ -277,7 +278,7 @@ const MyPage = () => {
             >
               <Button
                 variation="primary"
-                className="px-10 py-6 text-xl sm:text-2xl md:text-[1.65rem] md:px-[2.8rem] md:py-[1.2rem]"
+                className="px-10 py-5 text-2xl sm:text-3xl md:text-[1.65rem] md:px-[2.8rem] md:py-[1.2rem]"
               >
                 <Link href="/about">Learn More</Link>
               </Button>
@@ -289,7 +290,7 @@ const MyPage = () => {
       {/* PROJECTS SECTION */}
       <Section>
         <div className="relative md:h-screen w-screen gap-4 p-10 flex justify-center items-center flex-col overflow-hidden">
-          <div className="z-0 mb-48 md:mb-0 md:absolute md:top-1/2 md:right-[10%] md:-translate-y-1/2">
+          <div className="z-0 mb-15 md:mb-0 md:absolute md:top-1/2 md:right-[10%] md:-translate-y-1/2">
             <motion.div
               className="
                 relative bg-slate-300 rounded-sm 
@@ -316,7 +317,8 @@ const MyPage = () => {
 
           <div className="
             z-10 w-full 
-            relative md:absolute md:w-auto md:left-[10%] md:top-1/3 
+            relative md:absolute md:w-auto md:left-[10%] 
+  			top-[60%] md:top-1/3 
             flex flex-col justify-center items-start text-start 
             px-10 py-10 md:py-5
           ">
@@ -350,7 +352,7 @@ const MyPage = () => {
             >
               <Button
                 variation="primary"
-                className="px-12 py-7 text-xl sm:text-2xl md:text-[1.65rem] md:px-[2.8rem] md:py-[1.2rem]"
+                className="px-10 py-5 text-2xl sm:text-3xl md:text-[1.65rem] md:px-[2.8rem] md:py-[1.2rem]"
               >
                 <Link href="/projects">Learn More</Link>
               </Button>
@@ -362,7 +364,7 @@ const MyPage = () => {
       {/* CONTACT SECTION */}
       <Section>
         <div className="relative md:h-screen w-screen gap-4 p-10 flex justify-center items-center flex-col overflow-hidden">
-          <div className="z-0 mb-48 md:mb-0 md:absolute md:top-1/2 md:right-[10%] md:-translate-y-1/2">
+          <div className="z-0 mb-15 md:mb-0 md:absolute md:top-1/2 md:right-[10%] md:-translate-y-1/2">
             <motion.div
               className="
                 relative bg-slate-300 rounded-sm 
@@ -389,7 +391,8 @@ const MyPage = () => {
 
           <div className="
             z-10 w-full 
-            relative md:absolute md:w-auto md:left-[10%] md:top-1/3 
+            relative md:absolute md:w-auto md:left-[10%] 
+  			top-[60%] md:top-1/3
             flex flex-col justify-center items-start text-start 
             px-10 py-10 md:py-5 overflow-hidden
           ">
