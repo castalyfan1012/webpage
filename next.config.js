@@ -1,19 +1,32 @@
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
 	enabled: process.env.ANALYZE === "true",
 });
-module.exports = withBundleAnalyzer({
-	// your Next.js configuration
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+	// Static export for GitHub Pages
+	output: 'export',
+	
 	images: {
+		// Disable image optimization for static export
+		unoptimized: true,
+		
+		// Keep remote patterns for development
 		remotePatterns: [
 			{
 				protocol: "https",
 				hostname: "i.scdn.co",
 			},
 		],
-		// Add image optimization settings
 		formats: ["image/avif", "image/webp"],
 		minimumCacheTTL: 60,
 	},
+	
+	// For GitHub Pages deployment
+	basePath: '',
+	assetPrefix: '',
+	trailingSlash: true,
+	
 	webpack: (config, options) => {
 		config.module.rules.push({
 			test: /\.pdf$/i,
@@ -22,6 +35,7 @@ module.exports = withBundleAnalyzer({
 
 		return config;
 	},
+	
 	async headers() {
 		return [
 			{
@@ -33,7 +47,7 @@ module.exports = withBundleAnalyzer({
 					},
 					{
 						key: "Cache-Control",
-						value: "public, max-age=3600", // Cache for 1 hour
+						value: "public, max-age=3600",
 					},
 				],
 			},
@@ -56,7 +70,7 @@ module.exports = withBundleAnalyzer({
 			},
 		];
 	},
-	// Add performance optimizations
+	
 	reactStrictMode: true,
 	compiler: {
 		removeConsole:
@@ -66,4 +80,6 @@ module.exports = withBundleAnalyzer({
 				  }
 				: false,
 	},
-});
+};
+
+module.exports = withBundleAnalyzer(nextConfig);
