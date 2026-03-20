@@ -1,9 +1,8 @@
 "use client";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-// Replace these with better physics-oriented icons (lucide-react, heroicons, etc.)
-import { Atom, Microscope, Cpu } from "lucide-react"; // ← recommended replacements
+import { Atom, Microscope, Cpu } from "lucide-react";
 
 const skillCategories = {
   theoretical: {
@@ -11,8 +10,8 @@ const skillCategories = {
     icon: Atom,
     description: "Core concepts in high-energy physics, gravity, and the early universe",
     languages: [
-		{ name: "High-Energy Physics", highlight: true },
-		{ name: "Quantum Field Theory (QFT)", highlight: true },
+      { name: "High-Energy Physics", highlight: true },
+      { name: "Quantum Field Theory (QFT)", highlight: true },
       { name: "General Relativity", highlight: true },
       { name: "Cosmology", highlight: true },
       { name: "Quantum Computing", highlight: true },
@@ -25,28 +24,28 @@ const skillCategories = {
     ],
   },
   experimental: {
-	title: "Experimental & Computational Expertise",
-	icon: Microscope,
-	description: "Data analysis, simulation, and ML-driven reconstruction in worldwide experiments",
-	languages: [
-	  { name: "Machine Learning / Deep Learning", highlight: true },
-	  { name: "Data Analysis & Statistics", highlight: true },
-	  { name: "3D Event Reconstruction", highlight: true },
-	  { name: "Signal Processing", highlight: true },
-	  { name: "Quantum Computing (Qiskit)", highlight: true },
-	  { name: "PMT & Photon Detection", highlight: true },
-	  { name: "Basic Electronics & Instrumentation", highlight: true },
-	],
-	tools: [
-	  "ROOT / CERN libraries",
-	  "SPINE (ML-based imaging)",
-	  "TensorFlow / PyTorch",
-	  "Jupyter / Google Colab",
-	  "Monte Carlo Simulations",
-	  "Digitize & Image Processing",
-	  "PMT R&D & Calibration",
-	  "IBM Qiskit",
-	],
+    title: "Experimental & Computational Expertise",
+    icon: Microscope,
+    description: "Data analysis, simulation, and ML-driven reconstruction in worldwide experiments",
+    languages: [
+      { name: "Machine Learning / Deep Learning", highlight: true },
+      { name: "Data Analysis & Statistics", highlight: true },
+      { name: "3D Event Reconstruction", highlight: true },
+      { name: "Signal Processing", highlight: true },
+      { name: "Quantum Computing (Qiskit)", highlight: true },
+      { name: "PMT & Photon Detection", highlight: true },
+      { name: "Basic Electronics & Instrumentation", highlight: true },
+    ],
+    tools: [
+      "ROOT / CERN libraries",
+      "SPINE (ML-based imaging)",
+      "TensorFlow / PyTorch",
+      "Jupyter / Google Colab",
+      "Monte Carlo Simulations",
+      "Digitize & Image Processing",
+      "PMT R&D & Calibration",
+      "IBM Qiskit",
+    ],
   },
   tools: {
     title: "Programming & Productivity Tools",
@@ -166,7 +165,7 @@ function SkillDetails({ selectedSkill }) {
         transition={{ delay: 0.4 }}
       >
         <h3 className="text-xl font-medium text-gray-500 mb-6 text-center uppercase tracking-wider">
-          Supporting Tools & Software
+          Supporting Tools &amp; Software
         </h3>
         <motion.div
           key={selectedSkill.title + "-tools"}
@@ -190,6 +189,85 @@ function SkillDetails({ selectedSkill }) {
   );
 }
 
+function CredlyBadge() {
+  useEffect(() => {
+    // Load the Credly embed script once
+    if (!document.querySelector('script[src*="credly.com"]')) {
+      const script = document.createElement("script");
+      script.src = "//cdn.credly.com/assets/utilities/embed.js";
+      script.async = true;
+      document.body.appendChild(script);
+    } else {
+      // If script already loaded, trigger re-initialization if available
+      if (window.credlyEmbed) {
+        window.credlyEmbed.init();
+      }
+    }
+  }, []);
+
+  return (
+    <motion.div
+      className="mt-20"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+    >
+      {/* Section header */}
+      <div className="text-center mb-10">
+        <h2 className="text-3xl font-bold text-black mb-2">Certifications</h2>
+        <p className="text-gray-500 text-base max-w-xl mx-auto">
+          Verified credentials and professional certifications.
+        </p>
+      </div>
+
+      {/* Badge card */}
+      <div className="flex justify-center">
+        <motion.div
+          className="bg-white/40 border border-gray-300/30 rounded-2xl p-8 shadow-sm flex flex-col md:flex-row items-center gap-8 max-w-2xl w-full"
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+        >
+          {/* Credly embedded badge */}
+          <div className="flex-shrink-0 flex justify-center">
+            <div
+              data-iframe-width="150"
+              data-iframe-height="270"
+              data-share-badge-id="47f472f7-2513-4ef5-b80c-e42fe654cbb5"
+              data-share-badge-host="https://www.credly.com"
+            />
+          </div>
+
+          {/* Badge description */}
+          <div className="flex flex-col items-center md:items-start text-center md:text-left space-y-3">
+            <span className="text-xs uppercase tracking-widest text-gray-400 font-medium">
+              IBM Verified
+            </span>
+            <h3 className="text-xl font-semibold text-black">
+              Quantum Computing Fundamentals
+            </h3>
+            <p className="text-gray-500 text-sm leading-relaxed">
+              Awarded for demonstrating foundational knowledge in quantum computing,
+              including quantum circuits, gates, and algorithms using IBM Qiskit.
+            </p>
+            <a
+              href="https://www.credly.com/badges/47f472f7-2513-4ef5-b80c-e42fe654cbb5/public_url"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 mt-2 px-5 py-2 rounded-full bg-black text-white text-sm font-medium hover:bg-gray-700 transition-colors duration-200"
+            >
+              View Badge
+              <span className="text-xs">↗</span>
+            </a>
+          </div>
+        </motion.div>
+      </div>
+    </motion.div>
+  );
+}
+
 export default function Skills() {
   const [selectedCategory, setSelectedCategory] = useState("experimental");
 
@@ -203,14 +281,14 @@ export default function Skills() {
           className="text-center space-y-4 mb-16"
         >
           <h2 className="text-5xl font-bold bg-gradient-to-r from-black to-gray-600 bg-clip-text text-transparent">
-            Research Skills & Expertise
+            Research Skills &amp; Expertise
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto text-lg leading-relaxed">
             Core competencies in theoretical physics, experimental methods, and computational tools supporting high-energy and neutrino research.
           </p>
         </motion.div>
 
-        {/* Skill Categories Grid – now 3 columns on large screens */}
+        {/* Skill Categories Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           {Object.entries(skillCategories).map(([key, skill], index) => (
             <motion.div
@@ -231,6 +309,9 @@ export default function Skills() {
         <AnimatePresence mode="wait">
           <SkillDetails selectedSkill={skillCategories[selectedCategory]} />
         </AnimatePresence>
+
+        {/* Certifications */}
+        <CredlyBadge />
       </div>
     </div>
   );

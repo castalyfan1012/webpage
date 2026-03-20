@@ -120,7 +120,6 @@ const MyPage = () => {
               Castaly Fan
             </motion.h1>
 
-            {/* Your original self-intro paragraph — kept 100% unchanged */}
             <motion.p
               className="title text-md 2xl:text-xl mt-4 tracking-wider text-gray-500 leading-[1.7rem]"
               initial={{ x: -100, opacity: 0 }}
@@ -128,7 +127,7 @@ const MyPage = () => {
               viewport={{ once: true }}
               transition={{ delay: 0.4, type: "spring" }}
             >
-              Welcome to my homepage! I’m a PhD candidate in high‑energy physics, focusing on neutrino research using machine learning and data‑driven methods. Explore the sections below to learn more about my work and interests.
+              Welcome to my homepage! I&apos;m a PhD candidate in high&#8209;energy physics, focusing on neutrino research using machine learning and data&#8209;driven methods. Explore the sections below to learn more about my work and interests.
             </motion.p>
 
             <motion.div
@@ -247,7 +246,7 @@ const MyPage = () => {
           <div className="
             z-10 w-full 
             relative md:absolute md:w-auto md:left-[10%] 
-  			top-[60%] md:top-1/3 
+            top-[60%] md:top-1/3 
             flex flex-col justify-center items-start text-start 
             px-10 py-10 md:py-5
           ">
@@ -318,7 +317,7 @@ const MyPage = () => {
           <div className="
             z-10 w-full 
             relative md:absolute md:w-auto md:left-[10%] 
-  			top-[60%] md:top-1/3 
+            top-[60%] md:top-1/3 
             flex flex-col justify-center items-start text-start 
             px-10 py-10 md:py-5
           ">
@@ -392,7 +391,7 @@ const MyPage = () => {
           <div className="
             z-10 w-full 
             relative md:absolute md:w-auto md:left-[10%] 
-  			top-[60%] md:top-1/3
+            top-[60%] md:top-1/3
             flex flex-col justify-center items-start text-start 
             px-10 py-10 md:py-5 overflow-hidden
           ">
@@ -427,7 +426,7 @@ const MyPage = () => {
               transition={{ delay: 0.3, type: "spring" }}
             >
               <a href="mailto:castaly.fan@gmail.com?subject=Hello&body=Hello Castaly,">
-			  	castaly.fan@gmail.com
+                castaly.fan@gmail.com
               </a>
             </motion.p>
 
@@ -485,6 +484,26 @@ const MyPage = () => {
           </div>
         </div>
       </Section>
+
+      {/* FOOTER */}
+      <motion.footer
+        className="fixed bottom-0 left-0 right-0 z-30 py-3 px-8 flex justify-center items-center bg-white/60 backdrop-blur-sm"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.8 }}
+      >
+        <p className="text-xs text-black-400 tracking-widest text-center">
+        &copy; All right reserved. Powered by {" "}
+          <a
+            href="https://github.com/castalyfan1012/webpage/tree/main"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-2 hover:text-gray-400 transition-colors duration-200"
+          >
+            github.com/castalyfan1012
+          </a>
+        </p>
+      </motion.footer>
 
       <ScrollIndicator />
     </FullPageWrapper>

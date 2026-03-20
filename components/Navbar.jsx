@@ -152,8 +152,8 @@ const Navbar = () => {
 				<div className="flex flex-row items-center">
 					<button
 						aria-label={isNavOpen ? "Close menu" : "Open menu"}
-						className="burger button flex flex-col justify-center items-center space-y-1.5 "
-						onClick={toggleNav}>
+						className="burger button flex flex-col justify-center items-center space-y-1.5 [touch-action:manipulation]"
+						onPointerDown={(e) => { e.preventDefault(); toggleNav(); }}>
 						<div
 							className={`w-10 h-1 bg-black rounded-full transition-all ease duration-300 ${
 								isNavOpen ? "rotate-45   bg-white translate-y-[2px]" : ""
